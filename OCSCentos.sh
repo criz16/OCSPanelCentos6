@@ -31,10 +31,10 @@ echo ""
 echo ""
 echo "Configure Database OCS Panel Name"
 echo "(Make sure the database name contains no spaces, symbols, or special characters.)"
-read -p "Database Name    : " -e -i OCSShigeno NamaDatabase
+read -p "Database Name    : " -e -i OCS_Panel NamaDatabase
 echo "Input MySQL Password:"
 echo "(Use different Password for your database, dont use VPS password.)"
-read -p "Database Password: " -e -i shigeno PasswordDatabase
+read -p "Database Password: " -e -i criz@romero PasswordDatabase
 echo ""
 echo "All questions have been answered."
 read -n1 -r -p "Press any key to continue ..."
@@ -47,10 +47,10 @@ rpm -Uvh epel-release-6-8.noarch.rpm
 rpm -Uvh remi-release-6.rpm
 
 if [ "$OS" == "x86_64" ]; then
-  wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+  wget https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
   rpm -Uvh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 else
-  wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
+  wget https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
   rpm -Uvh rpmforge-release-0.5.3-1.el6.rf.i686.rpm
 fi
 
@@ -103,8 +103,8 @@ yum -y install nginx php php-fpm php-cli php-mysql php-mcrypt
 rm -f /usr/share/nginx/html/index.html
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
 mv /etc/nginx/conf.d/vps.conf /etc/nginx/conf.d/vps.conf.backup
-wget -O /etc/nginx/nginx.conf "http://script.hostingtermurah.net/repo/blog/ocspanel-centos6/nginx.conf"
-wget -O /etc/nginx/conf.d/vps.conf "http://script.hostingtermurah.net/repo/blog/ocspanel-centos6/vps.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/nginx.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/vps.conf"
 sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
 sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
 sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php.ini
@@ -126,9 +126,9 @@ service nginx restart
 #Install zip shigeno Script
 yum -y install zip unzip
 cd /home/vps/public_html
-wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/OCSPanelCentos6.zip
-unzip OCSPanelCentos6.zip
-rm -f OCSPanelCentos6.zip
+wget https://raw.githubusercontent.com/criz16/Panel/master/OCSpanel-TeamWork.zip
+unzip OCSpanel-TeamWork.zip
+rm -f OCSpanel-TeamWork.zip
 chown -R nginx:nginx /home/vps/public_html
 chmod -R +rw /home/vps/public_html
 chmod 777 /home/vps/public_html/config
@@ -181,9 +181,8 @@ echo "Password: (Use the password you have input in the browser)"    | tee -a lo
 echo "" 																| tee -a log-install-ocspanel.txt
 echo "Installatin Log: /root/log-install-ocspanel.txt" 				| tee -a log-install-ocspanel.txt
 echo "--------------------------------------------------------------------------------"| tee -a log-install-ocspanel.txt
-echo "Copyright https://www.HostingTermurah.net"  						| tee -a log-install-ocspanel.txt
-echo "Script Created By Steven Indarto(fb.com/stevenindarto2)"   		| tee -a log-install-ocspanel.txt
-echo "Modified by shigeno"                      	                 	| tee -a log-install-ocspanel.txt
+echo "Copyright  2020"  						| tee -a log-install-ocspanel.txt
+echo "Modified by Criz Romero"                      	                 	| tee -a log-install-ocspanel.txt
 echo "--------------------------------------------------------------------------------"| tee -a log-install-ocspanel.txt
 echo ""
 echo ""
