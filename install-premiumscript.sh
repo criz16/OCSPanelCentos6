@@ -21,7 +21,7 @@ cat > /root/limit.sh <<END3
 END3
 
 cd /usr/local/bin
-wget -O premium-script.tar.gz "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/premium-script.tar.gz"
+wget -O premium-script.tar.gz "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/premium-script.tar.gz"
 tar -xvf premium-script.tar.gz
 rm -f premium-script.tar.gz
 
@@ -77,6 +77,6 @@ cd
 echo " "
 echo " "
 echo "Premium Script Successfully Update!"
-echo "Modified by shigeno"
+echo "Modified by Criz Romero"
 echo " "
 echo " "
