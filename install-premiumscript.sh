@@ -1,6 +1,6 @@
 #!/bin/bash
 # Created by http://www.vps-murah.net
-# Modified by shigeno
+# Modified by Criz Romero
 
 cd
 sed -i '$ i\screen -AmdS limit /root/limit.sh' /etc/rc.local
