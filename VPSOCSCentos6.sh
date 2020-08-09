@@ -38,10 +38,10 @@ echo ""
 echo ""
 echo "Configure Database OCS Panel Name"
 echo "(Make sure the database name contains no spaces, symbols, or special characters.)"
-read -p "Database Name    : " -e -i OCSShigeno NamaDatabase
+read -p "Database Name    : " -e -i OCS_Panel NamaDatabase
 echo "Input MySQL Password:"
 echo "(Use different Password for your database, dont use VPS password.)"
-read -p "Database Password: " -e -i shigeno PasswordDatabase
+read -p "Database Password: " -e -i criz@romero PasswordDatabase
 echo ""
 echo "All questions have been answered."
 read -n1 -r -p "Press any key to continue ..."
@@ -57,10 +57,10 @@ rpm -Uvh epel-release-6-8.noarch.rpm
 rpm -Uvh remi-release-6.rpm
 
 if [ "$OS" == "x86_64" ]; then
-  wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+  wget https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
   rpm -Uvh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 else
-  wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
+  wget https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
   rpm -Uvh rpmforge-release-0.5.3-1.el6.rf.i686.rpm
 fi
 
@@ -113,8 +113,8 @@ yum -y install nginx php php-fpm php-cli php-mysql php-mcrypt
 rm -f /usr/share/nginx/html/index.html
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
 mv /etc/nginx/conf.d/vps.conf /etc/nginx/conf.d/vps.conf.backup
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/nginx.conf"
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/vps.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/nginx.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/vps.conf"
 sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
 sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
 sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php.ini
@@ -136,9 +136,9 @@ service nginx restart
 #Install zip shigeno Script
 yum -y install zip unzip
 cd /home/vps/public_html
-wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/OCSPanelCentos6.zip
-unzip OCSPanelCentos6.zip
-rm -f OCSPanelCentos6.zip
+wget https://raw.githubusercontent.com/criz16/Panel/master/OCSpanel-TeamWork.zip
+unzip OCSpanel-TeamWork.zip
+rm -f OCSpanel-TeamWork.zip
 chown -R nginx:nginx /home/vps/public_html
 chmod -R +rw /home/vps/public_html
 chmod 777 /home/vps/public_html/config
@@ -220,7 +220,7 @@ chkconfig vnstat on
 
 # install screenfetch
 cd
-wget -O /usr/bin/screenfetch "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/screenfetch"
+wget -O /usr/bin/screenfetch "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/screenfetch"
 chmod +x /usr/bin/screenfetch
 echo "clear" >> .bash_profile
 echo "screenfetch" >> .bash_profile
@@ -290,9 +290,9 @@ mkdir /var/lib/premium-script
 chkconfig pptpd on
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.d/rc.local
@@ -301,7 +301,7 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
 # setting banner
 rm /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/issue.net"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/criz16/OCSPanelCentos6/master/issue.net"
 sed -i 's@#Banner@Banner@g' /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 service ssh restart
@@ -470,7 +470,7 @@ yum -y install bmon
 
 # download script
 cd
-wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/install-premiumscript.sh -O - -o /dev/null|sh
+wget https://raw.githubusercontent.com/rm /etc/issue.net/OCSPanelCentos6/master/install-premiumscript.sh -O - -o /dev/null|sh
 
 # cron
 service crond start
@@ -507,8 +507,7 @@ echo " "
 echo "--------------------------- Setup Server Information ---------------------------"
 echo "                         Copyright HostingTermurah.net                          "
 echo "                        https://www.hostingtermurah.net                         "
-echo "               Created By Steven Indarto(fb.com/stevenindarto2)                 "
-echo "                              Modified by shigeno                               "
+echo "                              Modified by Criz Romero                               "
 echo "--------------------------------------------------------------------------------"
 echo ""  | tee -a log-install.txt
 echo "Server Included"  | tee -a log-install.txt
@@ -549,8 +548,7 @@ echo "   - Vnstat                  : http://$MYIP:85/vnstat/"  | tee -a log-inst
 echo "   - MRTG                    : http://$MYIP:85/mrtg/"  | tee -a log-install.txt
 echo "   - Installation Log        : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "----------- Script Created By Steven Indarto(fb.com/stevenindarto2) ------------"
-echo "------------------------------ Modified by shigeno -----------------------------"
+echo "------------------------------ Modified by Criz Romero -----------------------------"
 
 # info
 clear
@@ -565,8 +563,7 @@ echo "" 																| tee -a log-install-ocspanel.txt
 echo "Installatin Log: /root/log-install-ocspanel.txt" 				| tee -a log-install-ocspanel.txt
 echo "--------------------------------------------------------------------------------"| tee -a log-install-ocspanel.txt
 echo "Copyright https://www.HostingTermurah.net"  						| tee -a log-install-ocspanel.txt
-echo "Script Created By Steven Indarto(fb.com/stevenindarto2)"   		| tee -a log-install-ocspanel.txt
-echo "Modified by shigeno"                      	                 	| tee -a log-install-ocspanel.txt
+echo "Modified by Criz Romero"                      	                 	| tee -a log-install-ocspanel.txt
 echo "--------------------------------------------------------------------------------"| tee -a log-install-ocspanel.txt
 echo ""
 echo ""
