@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# set time GMT +8
+ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
+
 #Requirement
 if [ ! -e /usr/bin/curl ]; then
    yum -y update && yum -y upgrade
