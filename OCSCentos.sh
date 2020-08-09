@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#Requirement
+if [ ! -e /usr/bin/curl ]; then
+   yum -y update && yum -y upgrade
+   yum -y install curl
+fi
+
 #Initializing var
 if [[ "$USER" != 'root' ]]; then
 	echo "Run this script with root privileges."
@@ -15,11 +21,13 @@ else
 	exit
 fi
 
-#Requirement
-yum -y update && yum -y install curl
 
 # Checking Status
 MYIP=$(curl -4 icanhazip.com)
+if [ $MYIP = "" ]; then
+   MYIP=`ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1`;
+fi
+MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # go to root
 cd
@@ -38,6 +46,9 @@ read -p "Database Password: " -e -i criz@romero PasswordDatabase
 echo ""
 echo "All questions have been answered."
 read -n1 -r -p "Press any key to continue ..."
+
+# install wget and curl
+yum -y install wget curl
 
 #Set Repo
 cd
